@@ -44,7 +44,7 @@ namespace Painter
                 velocity.Y += 6;
             }
 
-            GameWorld GW = GameWorld as GameWorld;
+            PainterGameWorld GW = GameWorld as PainterGameWorld;
             if(GW.IsOutsideWorld(position))
             {
                 Reset();

@@ -17,6 +17,7 @@ namespace Painter
     public class Painter : GameEnvironment
     {
         private const String playingState = "playingState";
+        public const int maxLives = 3;
 
         public Painter()
         {
@@ -32,7 +33,7 @@ namespace Painter
 
             assetManager.PlayMusic("snd_music");
 
-            gameStateManager.AddGameState(playingState, new GameWorld());
+            gameStateManager.AddGameState(playingState, new PainterGameWorld());
             gameStateManager.SwitchTo(playingState);
         }
 

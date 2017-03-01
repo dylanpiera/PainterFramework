@@ -8,15 +8,22 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Painter
 {
-    class GameWorld : GameObjectList
+    class PainterGameWorld : GameObjectList
     {
         ThreeColorGameObject cannon;
         RotatableSpriteGameObject cannon_barrel;
         PaintCan can1, can2, can3;
         Ball ball;
+        TextGameObject scoreObj;
+        GameObjectList livesObj;
 
-        public GameWorld()
+        int lives, score;
+
+        public PainterGameWorld()
         {
+            scoreObj = new TextGameObject("GameFont");
+            scoreObj.Text = "";
+            livesObj = new GameObjectList();
             cannon = new ThreeColorGameObject("spr_cannon_red", "spr_cannon_blue", "spr_cannon_green");
             cannon.Position = new Vector2(58, 388);
             cannon_barrel = new RotatableSpriteGameObject("spr_cannon_barrel");
@@ -24,10 +31,21 @@ namespace Painter
             cannon_barrel.Origin = new Vector2(34, 34);
 
             can1 = new PaintCan(Color.Red,450f);
-            can2 = new PaintCan(Color.Blue, 575f);
-            can3 = new PaintCan(Color.Green, 700f);
+            can2 = new PaintCan(Color.Green, 575f);
+            can3 = new PaintCan(Color.Blue, 700f);
 
             ball = new Ball();
+
+            for (int i = 0; i < Painter.maxLives; i++)
+            {
+                SpriteGameObject life = new SpriteGameObject("spr_lives", 0, i.ToString());
+                life.Position = new Vector2(i * life.BoundingBox.Width, 30);
+                livesObj.Add(life);
+
+            }
+
+            this.Score = 0;
+            this.Lives = Painter.maxLives;
 
             this.Add(new SpriteGameObject("spr_background"));
             this.Add(ball);
@@ -36,7 +54,46 @@ namespace Painter
             this.Add(can3);
             this.Add(cannon_barrel);
             this.Add(cannon);
+            this.Add(scoreObj);
+            this.Add(livesObj);
 
+        }
+
+        public int Lives
+        {
+            get
+            {
+                return lives;
+            }
+
+            set
+            {
+                if (value > Painter.maxLives) return;
+
+                for (int i = 0; i < Painter.maxLives; i++)
+                {
+                    livesObj.Find(i.ToString()).Visible = (i < value);
+                }
+
+                lives = value;
+            }
+        }
+
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+
+            set
+            {
+                score = value;
+                if (scoreObj != null)
+                {
+                    scoreObj.Text = "Score: " + value;
+                }
+            }
         }
 
         public override void HandleInput(InputHelper inputHelper)
@@ -86,7 +143,7 @@ namespace Painter
 
         public bool IsOutsideWorld(Vector2 position)
         {
-            if((position.X <= 0 || position.X >= Painter.Screen.X) || (position.Y <= 0 || position.Y >= Painter.Screen.Y)) return true;
+            if((position.X <= 0 || position.X >= Painter.Screen.X) || position.Y >= Painter.Screen.Y) return true;
             
             return false;
         }

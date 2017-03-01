@@ -36,6 +36,20 @@ namespace Painter
                 Color = generateRandomColor();
             }
             minVelocity += 0.001f;
+
+            PainterGameWorld GW = GameWorld as PainterGameWorld;
+            if (GW.IsOutsideWorld(GlobalPosition))
+            {
+                if (this.Color == this.targetColor)
+                {
+                    GW.Score += 10;
+                    Painter.AssetManager.PlaySound("snd_collect_points");
+                }
+                else GW.Lives--;
+
+                this.Reset();
+            } 
+
             base.Update(gameTime);
         }
 
@@ -51,9 +65,9 @@ namespace Painter
                 case 0:
                     return Color.Red;
                 case 1:
-                    return Color.Green;
-                case 2:
                     return Color.Blue;
+                case 2:
+                    return Color.Green;
                 default:
                     return Color.Red;
             }

@@ -40,7 +40,7 @@
     <Compile Include="snd_collect_points.wma">
       <Name>snd_collect_points</Name>
       <Importer>WmaImporter</Importer>
-      <Processor>SongProcessor</Processor>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
     <Compile Include="snd_music.mp3">
       <Name>snd_music</Name>
