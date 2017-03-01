@@ -30,7 +30,7 @@ namespace Painter
             this.IsMouseVisible = true;
             screen = new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
-            
+            assetManager.PlayMusic("snd_music");
 
             gameStateManager.AddGameState(playingState, new GameWorld());
             gameStateManager.SwitchTo(playingState);
