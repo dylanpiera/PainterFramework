@@ -18,7 +18,6 @@ namespace Painter
             this.hPosOffset = hPosOffset;
             this.minVelocity = 30;
             this.Reset();
-            //this.position = new Vector2(500, 100);
         }
 
         public override void Reset()
