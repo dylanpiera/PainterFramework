@@ -13,6 +13,7 @@ namespace Painter
         ThreeColorGameObject cannon;
         RotatableSpriteGameObject cannon_barrel;
         PaintCan can1, can2, can3;
+        Ball ball;
 
         public GameWorld()
         {
@@ -26,13 +27,16 @@ namespace Painter
             can2 = new PaintCan(Color.Blue, 575f);
             can3 = new PaintCan(Color.Green, 700f);
 
+            ball = new Ball();
 
             this.Add(new SpriteGameObject("spr_background"));
+            this.Add(ball);
             this.Add(can1);
             this.Add(can2);
             this.Add(can3);
             this.Add(cannon_barrel);
             this.Add(cannon);
+
         }
 
         public override void HandleInput(InputHelper inputHelper)
@@ -49,6 +53,34 @@ namespace Painter
             double opposite = inputHelper.MousePosition.Y - cannon_barrel.GlobalPosition.Y;
             double adjacent = inputHelper.MousePosition.X - cannon_barrel.GlobalPosition.X;
             cannon_barrel.Angle = (float)Math.Atan2(opposite, adjacent);
+
+            if(inputHelper.MouseLeftButtonPressed() && !this.ball.Shooting)
+            {
+                ball.Shoot(inputHelper, cannon, cannon_barrel);
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            checkCanCollision(can1); checkCanCollision(can2); checkCanCollision(can3);
+
+            //Vector2 distanceVector = ((Painter.GameWorld.Ball.Position + Painter.GameWorld.Ball.Center) - (position + Center));
+            //if (Math.Abs(distanceVector.X) < Center.X && Math.Abs(distanceVector.Y) < Center.Y)
+            //{
+            //    Color = Painter.GameWorld.Ball.Color;
+            //    Painter.GameWorld.Ball.Reset();
+            //}
+
+            base.Update(gameTime);
+        }
+
+        private void checkCanCollision(PaintCan can)
+        {
+            if(this.ball.CollidesWith(can) && ball.Shooting)
+            {
+                can.Color = this.ball.Color;
+                this.ball.Reset();
+            }
         }
 
 

@@ -28,6 +28,7 @@ namespace Painter
         {
             base.LoadContent();
             this.IsMouseVisible = true;
+            screen = new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
             
 

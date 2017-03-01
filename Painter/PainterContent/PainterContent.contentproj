@@ -50,7 +50,7 @@
     <Compile Include="snd_shoot_paint.mp3">
       <Name>snd_shoot_paint</Name>
       <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
     <Compile Include="spr_background.jpg">
       <Name>spr_background</Name>
