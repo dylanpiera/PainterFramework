@@ -12,6 +12,7 @@ namespace Painter
     {
         ThreeColorGameObject cannon;
         RotatableSpriteGameObject cannon_barrel;
+        PaintCan can1, can2, can3;
 
         public GameWorld()
         {
@@ -21,8 +22,15 @@ namespace Painter
             cannon_barrel.Position = new Vector2(74, 404);
             cannon_barrel.Origin = new Vector2(34, 34);
 
-            this.Add(new SpriteGameObject("spr_background"));
+            can1 = new PaintCan(Color.Red,450f);
+            can2 = new PaintCan(Color.Blue, 575f);
+            can3 = new PaintCan(Color.Green, 700f);
 
+
+            this.Add(new SpriteGameObject("spr_background"));
+            this.Add(can1);
+            this.Add(can2);
+            this.Add(can3);
             this.Add(cannon_barrel);
             this.Add(cannon);
         }

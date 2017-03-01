@@ -33,9 +33,8 @@ namespace Painter
 
             gameStateManager.AddGameState(playingState, new GameWorld());
             gameStateManager.SwitchTo(playingState);
-
-
         }
+
 
 
     }

@@ -23,7 +23,6 @@ namespace Painter
         public override void Reset()
         {
             base.Reset();
-
             Color = Color.Blue;
         }
 
