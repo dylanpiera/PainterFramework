@@ -18,7 +18,8 @@ namespace Painter
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch);
+            if (!visible || sprite == null) return;
+            spriteBatch.Draw(sprite.Sprite, new Rectangle((int) this.GlobalPosition.X,(int) this.GlobalPosition.Y,sprite.Width,sprite.Height), null, Color.White, angle, this.Origin, SpriteEffects.None, 0);
         }
 
         public float Angle

@@ -37,6 +37,11 @@ namespace Painter
             else if (inputHelper.KeyPressed(Keys.B))
                 cannon.Color = Color.Blue;
 
+            double opposite = inputHelper.MousePosition.Y - cannon_barrel.GlobalPosition.Y;
+            double adjacent = inputHelper.MousePosition.X - cannon_barrel.GlobalPosition.X;
+            cannon_barrel.Angle = (float)Math.Atan2(opposite, adjacent);
+
+
         }
     }
 }
