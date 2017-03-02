@@ -126,6 +126,7 @@ namespace Painter
 
             if(this.lives <= 0)
             {
+                this.Reset();
                 Painter.GameStateManager.SwitchTo(Painter.gameoverState);
             }
            
@@ -149,7 +150,20 @@ namespace Painter
             return false;
         }
 
+        public override void Reset()
+        {
+            this.Lives = Painter.maxLives;
+            this.Score = 0;
+            this.can1.Reset();
+            this.can2.Reset();
+            this.can3.Reset();
+            this.cannon.Reset();
+            this.cannon_barrel.Reset();
 
-        
+            base.Reset();
+        }
+
+
+
     }
 }

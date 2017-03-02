@@ -13,5 +13,16 @@ namespace Painter
             textObj.Position = new Vector2((Painter.Screen.X/6), (Painter.Screen.Y/2)-10);
             this.Add(textObj);
         }
+
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            base.HandleInput(inputHelper);
+            
+            
+
+            if (inputHelper.AnyKeyPressed) Painter.GameStateManager.SwitchTo(Painter.playingState);
+
+
+        }
     }
 }

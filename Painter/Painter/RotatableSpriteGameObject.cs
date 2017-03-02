@@ -27,5 +27,11 @@ namespace Painter
             get { return angle; }
             set { angle = value; }
         }
+
+        public override void Reset()
+        {
+            this.angle = -0.5f;
+            base.Reset();
+        }
     }
 }
