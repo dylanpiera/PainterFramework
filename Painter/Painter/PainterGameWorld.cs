@@ -23,6 +23,8 @@ namespace Painter
         {
             scoreObj = new TextGameObject("GameFont");
             scoreObj.Text = "";
+            scoreObj.Position = new Vector2(24,6);
+            SpriteGameObject scoreBar = new SpriteGameObject("spr_scorebar");
             livesObj = new GameObjectList();
             cannon = new ThreeColorGameObject("spr_cannon_red", "spr_cannon_blue", "spr_cannon_green");
             cannon.Position = new Vector2(58, 388);
@@ -48,6 +50,7 @@ namespace Painter
             this.Lives = Painter.maxLives;
 
             this.Add(new SpriteGameObject("spr_background"));
+            this.Add(scoreBar);
             this.Add(ball);
             this.Add(can1);
             this.Add(can2);
@@ -121,13 +124,11 @@ namespace Painter
         {
             checkCanCollision(can1); checkCanCollision(can2); checkCanCollision(can3);
 
-            //Vector2 distanceVector = ((Painter.GameWorld.Ball.Position + Painter.GameWorld.Ball.Center) - (position + Center));
-            //if (Math.Abs(distanceVector.X) < Center.X && Math.Abs(distanceVector.Y) < Center.Y)
-            //{
-            //    Color = Painter.GameWorld.Ball.Color;
-            //    Painter.GameWorld.Ball.Reset();
-            //}
-
+            if(this.lives <= 0)
+            {
+                Painter.GameStateManager.SwitchTo(Painter.gameoverState);
+            }
+           
             base.Update(gameTime);
         }
 
