@@ -37,6 +37,7 @@ namespace Painter
             }
             minVelocity += 0.001f;
 
+
             PainterGameWorld GW = GameWorld as PainterGameWorld;
             if (GW.IsOutsideWorld(GlobalPosition))
             {
@@ -48,7 +49,9 @@ namespace Painter
                 else GW.Lives--;
 
                 this.Reset();
-            } 
+            }
+
+            Angle = (float)Math.Sin(position.Y / 50.0f) * 0.1f;
 
             base.Update(gameTime);
         }

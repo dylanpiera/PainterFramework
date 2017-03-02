@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Painter
 {
-    class ThreeColorGameObject : SpriteGameObject
+    class ThreeColorGameObject : RotatableSpriteGameObject
     {
         SpriteSheet colorRed, colorBlue, colorGreen;
         Color color;
